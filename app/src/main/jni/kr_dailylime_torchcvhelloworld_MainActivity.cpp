@@ -172,9 +172,11 @@ Java_kr_dailylime_torchcvhelloworld_MainActivity_InferMobileNetClassifier(
     // Infer using torchscript module
     TorchModelHandler* handler = TorchModelHandlerInstance;
 
+    // During torchscript inference, measure inference time
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     const std::string infer_result = handler->infer(bgrMat);
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    
     int infer_time_ms = (int)(std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count());
 
     // Get average fps
